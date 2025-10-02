@@ -16,16 +16,37 @@ namespace ProjetoLoja2DSA.Controllers
         //DEFINE O CONRDTRUTOR DA CLASSE USUARIOCONTROLLER 
         //RECEBE A INSTANCIA DE USUARIOREPOSITORIO  COM PARAMETROS
         public UsuarioController(UsuarioRepositorio usuarioRepositorio)
-      {
+        {
             // O CONSTRUTOR É CHAMADO QUANDO UMA NOVA INSTANCIA É CRIADA
             _usuarioRepositorio = usuarioRepositorio;
-      }
+        }
 
 
         //INTERFACE QUE REPRESENTA O RESULTADO DA PÁGINA 
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Login()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Login(string email, string senha)
+        {
+            var usuario = _usuarioRepositorio.ObterUsuario(email);
+
+            if (usuario != null && usuario.senha != senha)
+            {
+                return RedirectToAction("Index", "Cliente");
+            }
+            ModelState.AddModelError("", "Email / senha Inválidos");
+
+
+            //RETORNA A PAGINA INDEX
+            return View();
+        }
+
+
     }
 }
+    
+
