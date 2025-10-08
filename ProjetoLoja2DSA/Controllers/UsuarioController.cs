@@ -34,9 +34,9 @@ namespace ProjetoLoja2DSA.Controllers
         {
             var usuario = _usuarioRepositorio.ObterUsuario(email);
 
-            if (usuario != null && usuario.Senha != senha)
+            if (usuario != null && usuario.Senha == senha)
             {
-                return RedirectToAction("Index", "Cliente");
+                return RedirectToAction("Index", "Home");
             }
             ModelState.AddModelError("", "Email / senha Inválidos");
 
