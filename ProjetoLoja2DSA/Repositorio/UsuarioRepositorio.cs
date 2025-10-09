@@ -10,7 +10,35 @@ namespace ProjetoLoja2DSA.Repositorio
         // Declara um campo privado somente leitura para armazenar a string de conexão com o MySQL.
         private readonly string _conexaoMySQL = configuration.GetConnectionString("ConexaoMySQL");
 
+        //metodo para cadastrar usuario
+        public void AdicionarUsuario(Usuario usuario)
+        {
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                //abrindo a conexao com o banco de dados
+                conexao.Open();
 
+                //cria uma variavel que vai receber o metodo criar comando
+                var cmd = conexao.CreateCommand();
+
+                //cria um novo comando MYSQL para inserir os dados na tabela usuario
+                cmd.CommandText = "INSERT INTO Usuario (email, senha) Values (@email, @senha)";
+
+                //adiciona o parametro email e define seu tipo
+                cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = usuario.Email;
+
+                //adiciona o parametro senha e define seu tipo
+                cmd.Parameters.Add("@senha", MySqlDbType.VarChar).Value = usuario.Senha;
+
+                //executa o comando SQL e insere os dados e retorna as linhas afetadas
+                cmd.ExecuteNonQuery();
+
+                //fecha a conexao com o banco de dados
+                conexao.Close();
+            }
+        }
+
+        // metodo para buscar todos os usuarios
         public Usuario ObterUsuario(string email)
         {
             // Cria uma nova instância da conexão MySQL dentro de um bloco 'using'.
@@ -18,8 +46,10 @@ namespace ProjetoLoja2DSA.Repositorio
             {
                 // Abre a conexão com o banco de dados MySQL.
                 conexao.Open();
+
                 // Cria um novo comando SQL para selecionar todos os campos da tabela 'Usuario' onde o campo 'Email' corresponde ao parâmetro fornecido.
                 MySqlCommand cmd = new("SELECT * FROM Usuario WHERE Email = @email", conexao);
+
                 // Adiciona um parâmetro ao comando SQL para o campo 'Email', especificando o tipo como VarChar e utilizando o valor do parâmetro 'email'.
                 cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = email;
 

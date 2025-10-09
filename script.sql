@@ -21,7 +21,7 @@ emailCli varchar(40) not null
 SELECT * FROM Usuario;
 SELECT * FROM Cliente;
 
-
+INSERT INTO Usuario (email, senha) Values ("@email", "@senha");
 
 
 
