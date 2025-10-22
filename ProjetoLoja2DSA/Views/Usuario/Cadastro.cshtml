@@ -1,16 +1,18 @@
-﻿@model ProjetoLoja2DSA.Models.Usuario;
+﻿<link href="~/css/estilo.css" rel="stylesheet" />
+
+@model ProjetoLoja2DSA.Models.Usuario;
 
 @{
     ViewData["Title"] = "Cadastro";
 }
 
-<form asp-action="Cadastro" method="post">
-    <h1>Cadastrar Usuário</h1>
-    <div>
+<form asp-action="Cadastro" method="post" class="cadastro-form">
+    <h1 class="cadastro-title" >Cadastrar Usuário</h1>
+    <div class="cadastro-div">
         <label>Email</label>
-        <input tyoe ="email" name="email" required />
+        <input type ="email" name="email" class="cadastro-input" required />
         <label>Senha</label>
-        <input tyoe="passeword" name="senha" required />
+        <input tyoe="passeword" name="senha" class="cadastro-input" required /> 
+        <button class="btn btn-secondary">Cadastrar</button> 
     </div>
-    <button>Cadastrar</button>
 </form>

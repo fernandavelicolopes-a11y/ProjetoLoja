@@ -46,3 +46,54 @@
     background-image: linear-gradient(aqua,purple);
     transform: scale(1.1);
     }
+
+/*ESTILIZAÇÃO DO CADASTRO*/
+
+.cadastro-form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background: #f4f4f4;
+}
+
+.cadastro-title{
+    text-align:center;
+    color:purple;
+    margin-bottom:20px;
+}
+
+.cadastro-div {
+    margin-bottom: 15px;
+}
+
+.cadastro-div label{
+    display: block;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.cadastro-input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid blue;
+    box-sizing: border-box;
+}
+
+.btn-secondary {
+    background-image: linear-gradient(purple,aqua);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+    margin: 0 auto;
+    transition: 0.2s color ease;
+}
+
+.btn-secondary:hover{
+    background-image: linear-gradient(aqua,purple);
+    transform: scale(1.1);
+}
